@@ -14,7 +14,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
+    // Datos del cliente
     private String tipoIdentificacion;
     private String identificacion;
     private String nombre;
