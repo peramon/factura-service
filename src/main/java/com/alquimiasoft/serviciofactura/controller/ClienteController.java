@@ -3,7 +3,9 @@ package com.alquimiasoft.serviciofactura.controller;
 import com.alquimiasoft.serviciofactura.entity.Cliente;
 import com.alquimiasoft.serviciofactura.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -38,6 +40,17 @@ public class ClienteController {
         datosCliente.setDireccion(cliente.getDireccion());
         return clienteService.crearCliente(datosCliente);
     }
+
+    @DeleteMapping("/cliente/{id}")
+    public HttpStatus eliminarCliente(@PathVariable Long id){
+        clienteService.eliminarCliente(id);
+        if(clienteService.buscarCliente(id)==null){
+            return HttpStatus.NO_CONTENT;
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El cliente no se pudo borrar");
+        }
+    }
+
 }
 
 /*private String tipoIdentificacion;
