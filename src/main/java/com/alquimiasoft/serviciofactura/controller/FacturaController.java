@@ -80,6 +80,12 @@ public class FacturaController {
         return clienteService.obtenerListaDirecciones(id);
     }
 
+    // Buscar cliente por identificacion
+    @GetMapping("/cliente")
+    public Cliente buscarCliente(@RequestParam String dni){
+        return clienteService.buscarCliente(dni);
+    }
+
 }
 
 

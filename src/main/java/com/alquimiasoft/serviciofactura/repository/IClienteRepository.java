@@ -14,4 +14,7 @@ public interface IClienteRepository extends JpaRepository<Cliente, Integer>{
             "WHERE c.id = :id\n" +
             "AND c.id = d.cd_fk", nativeQuery = true)
     public List<Map<String, String>> getInformation(Integer id);
+
+    @Query(value="SELECT * FROM CLIENTE WHERE CLIENTE.IDENTIFICACION = :identificacion", nativeQuery = true)
+    public Cliente buscarPorIdentificacion(String identificacion);
 }

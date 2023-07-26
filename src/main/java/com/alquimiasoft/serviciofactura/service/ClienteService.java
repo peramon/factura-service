@@ -36,4 +36,9 @@ public class ClienteService {
         return clienteRepository.getInformation(id);
     }
 
+    // Servicio para buscar clientes por identificacion
+    public Cliente buscarCliente(String identificacion){
+        return clienteRepository.buscarPorIdentificacion(identificacion);
+    }
+
 }
