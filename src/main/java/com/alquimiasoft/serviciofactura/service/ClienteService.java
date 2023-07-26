@@ -1,7 +1,7 @@
 package com.alquimiasoft.serviciofactura.service;
 
 import com.alquimiasoft.serviciofactura.entity.Cliente;
-import com.alquimiasoft.serviciofactura.repository.ICliente;
+import com.alquimiasoft.serviciofactura.repository.IClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,8 @@ import java.util.List;
 public class ClienteService {
 
     @Autowired
-    ICliente clienteRepository;
+    IClienteRepository clienteRepository;
+
 
     public Cliente crearCliente(Cliente nuevoCliente) {
         return clienteRepository.save(nuevoCliente);
@@ -21,11 +22,11 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente buscarCliente(Long id){
+    public Cliente buscarCliente(Integer id){
         return clienteRepository.findById(id).orElse(null);
     }
 
-    public void eliminarCliente(Long id){
+    public void eliminarCliente(Integer id){
         clienteRepository.deleteById(id);
     }
 

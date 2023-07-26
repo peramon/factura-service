@@ -1,7 +1,9 @@
 package com.alquimiasoft.serviciofactura.controller;
 
+import com.alquimiasoft.serviciofactura.dto.FacturaDto;
 import com.alquimiasoft.serviciofactura.entity.Cliente;
 import com.alquimiasoft.serviciofactura.service.ClienteService;
+import com.alquimiasoft.serviciofactura.service.DireccionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +13,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/factura")
-public class ClienteController {
+public class FacturaController {
 
     @Autowired
     ClienteService clienteService;
+    @Autowired
+    DireccionService direccionService;
 
     // Medoto Post para guardar los datos del cliente
     @PostMapping("/nuevo")
-    public Cliente ingresarCliente(@RequestBody Cliente nuevoCliente){
-        return clienteService.crearCliente(nuevoCliente);
+    public Cliente ingresarDatosCliente(@RequestBody FacturaDto nuevoCliente){
+        return clienteService.crearCliente(nuevoCliente.getCliente());
     }
 
     // Metodo para obtener el listado de clientes
@@ -30,19 +34,20 @@ public class ClienteController {
 
     // Metodo para actualizar la informacion del cliente
     @PutMapping("/cliente/{id}")
-    public Cliente actualizarCliente(@PathVariable long id, @RequestBody Cliente cliente){
+    public Cliente actualizarCliente(@PathVariable Integer id, @RequestBody FacturaDto infoCliente){
         Cliente datosCliente = clienteService.buscarCliente(id);
-        datosCliente.setTipoIdentificacion(cliente.getTipoIdentificacion());
-        datosCliente.setIdentificacion(cliente.getIdentificacion());
-        datosCliente.setNombre(cliente.getNombre());
-        datosCliente.setCorreo(cliente.getCorreo());
-        datosCliente.setNumeroCelular(cliente.getNumeroCelular());
-        datosCliente.setDireccion(cliente.getDireccion());
+        datosCliente.setTipoIdentificacion(infoCliente.getCliente().getTipoIdentificacion());
+        datosCliente.setIdentificacion(infoCliente.getCliente().getIdentificacion());
+        datosCliente.setNombre(infoCliente.getCliente().getNombre());
+        datosCliente.setCorreo(infoCliente.getCliente().getCorreo());
+        datosCliente.setNumeroCelular(infoCliente.getCliente().getNumeroCelular());
+        datosCliente.setDirecciones(infoCliente.getCliente().getDirecciones());
         return clienteService.crearCliente(datosCliente);
     }
 
+    // Eliminar el resgistro de un cliente
     @DeleteMapping("/cliente/{id}")
-    public HttpStatus eliminarCliente(@PathVariable Long id){
+    public HttpStatus eliminarCliente(@PathVariable Integer id){
         clienteService.eliminarCliente(id);
         if(clienteService.buscarCliente(id)==null){
             return HttpStatus.NO_CONTENT;
@@ -51,12 +56,8 @@ public class ClienteController {
         }
     }
 
+  
+
 }
 
-/*private String tipoIdentificacion;
-    private String identificacion;
-    private String nombre;
-    private String correo;
-    private String numeroCelular;
-    private String direccion;
-*/
+
