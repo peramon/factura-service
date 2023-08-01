@@ -6,6 +6,7 @@ import com.alquimiasoft.serviciofactura.entity.Cliente;
 import com.alquimiasoft.serviciofactura.entity.Direccion;
 import com.alquimiasoft.serviciofactura.service.ClienteService;
 import com.alquimiasoft.serviciofactura.service.DireccionService;
+import com.alquimiasoft.serviciofactura.util.ValidarIdentificacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/factura")
@@ -23,9 +25,14 @@ public class FacturaController {
     @Autowired
     DireccionService direccionService;
 
+//    private static final Logger LOGGER = Logger.getLogger(ClienteService.class.getName());
+
     // Medoto Post para guardar los datos del cliente
     @PostMapping("/nuevo")
+    @ResponseStatus(HttpStatus.CREATED)
     public Cliente ingresarDatosCliente(@RequestBody FacturaDto nuevoCliente){
+        /*boolean verificaIdentificion = ValidarIdentificacion.isValidCedulaRuc(nuevoCliente.getCliente().getIdentificacion());
+        LOGGER.info("Verifica identificacion -> "+verificaIdentificion);*/
         return clienteService.crearCliente(nuevoCliente.getCliente());
     }
 
