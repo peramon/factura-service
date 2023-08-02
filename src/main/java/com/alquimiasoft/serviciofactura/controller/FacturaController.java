@@ -46,13 +46,30 @@ public class FacturaController {
     @PutMapping("/cliente/{id}")
     public Cliente actualizarCliente(@PathVariable Integer id, @RequestBody FacturaDto infoCliente){
         Cliente datosCliente = clienteService.buscarCliente(id);
-        datosCliente.setTipoIdentificacion(infoCliente.getCliente().getTipoIdentificacion());
-        datosCliente.setIdentificacion(infoCliente.getCliente().getIdentificacion());
-        datosCliente.setNombre(infoCliente.getCliente().getNombre());
-        datosCliente.setCorreo(infoCliente.getCliente().getCorreo());
-        datosCliente.setNumeroCelular(infoCliente.getCliente().getNumeroCelular());
-        datosCliente.setDirecciones(infoCliente.getCliente().getDirecciones());
-        return clienteService.crearCliente(datosCliente);
+        System.out.println("Cliente ->" + datosCliente.getIdentificacion());
+        System.out.println("Cliente 2 ->" + infoCliente.getCliente().getTipoIdentificacion());
+        // Actualizar datos
+        if(infoCliente.getCliente().getTipoIdentificacion() != null){
+            datosCliente.setTipoIdentificacion(infoCliente.getCliente().getTipoIdentificacion());
+        }
+        if(infoCliente.getCliente().getTipoIdentificacion() != null){
+            datosCliente.setTipoIdentificacion(infoCliente.getCliente().getTipoIdentificacion());
+        }
+        if(infoCliente.getCliente().getIdentificacion() != null){
+            datosCliente.setIdentificacion(infoCliente.getCliente().getIdentificacion());
+        }
+        if(infoCliente.getCliente().getNombre() != null){
+            datosCliente.setNombre(infoCliente.getCliente().getNombre());
+        }
+        if(infoCliente.getCliente().getCorreo() != null){
+            datosCliente.setCorreo(infoCliente.getCliente().getCorreo());
+        }
+        if(infoCliente.getCliente().getNumeroCelular() != null){
+            datosCliente.setNumeroCelular(infoCliente.getCliente().getNumeroCelular());
+        }
+
+        // datosCliente.setDirecciones(infoCliente.getCliente().getDirecciones());
+        return clienteService.actualizarCliente(datosCliente);
     }
 
     // Eliminar el resgistro de un cliente

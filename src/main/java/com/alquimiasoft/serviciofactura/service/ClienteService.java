@@ -28,7 +28,18 @@ public class ClienteService {
         if(clienteGuardado.isPresent()){
             throw new ResourceNotFoundException("El cliente ya existe en la base de datos: " + nuevoCliente.getIdentificacion());
         }
-        return clienteRepository.save(nuevoCliente);
+        if(nuevoCliente.getTipoIdentificacion() == "RUC"){
+            if(nuevoCliente.getIdentificacion().length() == 10){
+                nuevoCliente.setIdentificacion(nuevoCliente.getIdentificacion() + "001");
+                return clienteRepository.save(nuevoCliente);
+            }else{
+                throw new ResourceNotFoundException("El cliente tiene que ingresar los 10 digitos en la identificacio");
+            }
+        }else if(nuevoCliente.getIdentificacion().length()==10){
+            return clienteRepository.save(nuevoCliente);
+        }else{
+            throw new ResourceNotFoundException("El cliente tiene que ingresar los 10 digitos en la identificacion");
+        }
     }
 
     public List<Cliente> obtenerClientes(){
@@ -52,4 +63,8 @@ public class ClienteService {
         return clienteRepository.buscarPorIdentificacion(identificacion);
     }
 
+    // Servicio para actualizar la informacion del cliente
+    public Cliente actualizarCliente(Cliente cliente){
+        return clienteRepository.save(cliente);
+    }
 }
