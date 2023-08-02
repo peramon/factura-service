@@ -49,7 +49,12 @@ en donnde se realizo la siguiente configuración.
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
+	</dependencies>
+```
+#### Dependencias para Test
+
+```agsl
+                <!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -63,8 +68,15 @@ en donnde se realizo la siguiente configuración.
 			<version>5.4.0</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 ```
+Las dependencias de **Mockito** y **JUnit** nos serviran para hacer pruebas unitarias
+de los paquetes de `service`, `repositrory` y `controller`, y la dependencia
+H2 es una base en memoria para no hacer pruebas directamente a la base de datos.
 #### Estructura
 ```json
 src
@@ -90,6 +102,8 @@ src
 │       │       └── alquimiasoft
 │       │           └── serviciofactura
 │       │               └── respository
+│       │               └── service
+│       │               └── todo: implement controller
 │       │               └── ServicioFacturaApplicationTests.java
 └── pom.xml
 ```
