@@ -1,12 +1,10 @@
 package com.alquimiasoft.serviciofactura.controller;
 
 import com.alquimiasoft.serviciofactura.dto.FacturaDto;
-import com.alquimiasoft.serviciofactura.dto.InfoDireccionDao;
 import com.alquimiasoft.serviciofactura.entity.Cliente;
 import com.alquimiasoft.serviciofactura.entity.Direccion;
 import com.alquimiasoft.serviciofactura.service.ClienteService;
 import com.alquimiasoft.serviciofactura.service.DireccionService;
-import com.alquimiasoft.serviciofactura.util.ValidarIdentificacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/factura")
@@ -45,7 +42,7 @@ public class FacturaController {
     // Metodo para actualizar la informacion del cliente
     @PutMapping("/cliente/{id}")
     public Cliente actualizarCliente(@PathVariable Integer id, @RequestBody FacturaDto infoCliente){
-        Cliente datosCliente = clienteService.buscarCliente(id);
+        Cliente datosCliente = clienteService.buscarClientePorId(id);
         System.out.println("Cliente ->" + datosCliente.getIdentificacion());
         System.out.println("Cliente 2 ->" + infoCliente.getCliente().getTipoIdentificacion());
         // Actualizar datos
@@ -76,7 +73,7 @@ public class FacturaController {
     @DeleteMapping("/cliente/{id}")
     public HttpStatus eliminarCliente(@PathVariable Integer id){
         clienteService.eliminarCliente(id);
-        if(clienteService.buscarCliente(id)==null){
+        if(clienteService.buscarClientePorId(id)==null){
             return HttpStatus.NO_CONTENT;
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El cliente no se pudo borrar");
@@ -86,7 +83,7 @@ public class FacturaController {
     // Ingresar más direcciones del cliente
     @PutMapping("/cliente/{id}/direccion")
     public Cliente registrarDirecciones(@PathVariable Integer id,@RequestBody Direccion direccion){
-        Cliente clienteActual = clienteService.buscarCliente(id);
+        Cliente clienteActual = clienteService.buscarClientePorId(id);
         List<Direccion> direcciones = clienteActual.getDirecciones();
         if(direcciones.isEmpty()){
             direcciones.add(direccion);
@@ -107,7 +104,7 @@ public class FacturaController {
     // Buscar cliente por identificacion
     @GetMapping("/cliente")
     public Cliente buscarCliente(@RequestParam String dni){
-        return clienteService.buscarCliente(dni);
+        return clienteService.buscarClientePorIdentificacion(dni);
     }
 
 }

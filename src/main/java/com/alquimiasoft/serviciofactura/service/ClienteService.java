@@ -1,18 +1,14 @@
 package com.alquimiasoft.serviciofactura.service;
 
-import com.alquimiasoft.serviciofactura.dto.InfoDireccionDao;
 import com.alquimiasoft.serviciofactura.entity.Cliente;
 import com.alquimiasoft.serviciofactura.exception.ResourceNotFoundException;
 import com.alquimiasoft.serviciofactura.repository.IClienteRepository;
-import com.alquimiasoft.serviciofactura.util.ValidarIdentificacion;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Service
 public class ClienteService {
@@ -46,7 +42,7 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente buscarCliente(Integer id){
+    public Cliente buscarClientePorId(Integer id){
         return clienteRepository.findById(id).orElse(null);
     }
 
@@ -59,7 +55,7 @@ public class ClienteService {
     }
 
     // Servicio para buscar clientes por identificacion
-    public Cliente buscarCliente(String identificacion){
+    public Cliente buscarClientePorIdentificacion(String identificacion){
         return clienteRepository.buscarPorIdentificacion(identificacion);
     }
 
