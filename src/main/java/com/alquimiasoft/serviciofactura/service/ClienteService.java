@@ -36,6 +36,8 @@ public class ClienteService {
         }else{
             throw new ResourceNotFoundException("El cliente tiene que ingresar los 10 digitos en la identificacion");
         }
+
+        // TODO terminar de im plmentar controles para el correor yel celular
     }
 
     public List<Cliente> obtenerClientes(){
