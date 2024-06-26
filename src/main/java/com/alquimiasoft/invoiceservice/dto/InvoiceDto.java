@@ -1,6 +1,6 @@
-package com.alquimiasoft.serviciofactura.dto;
+package com.alquimiasoft.invoiceservice.dto;
 
-import com.alquimiasoft.serviciofactura.entity.Cliente;
+import com.alquimiasoft.invoiceservice.entity.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +10,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class FacturaDto {
-    private Cliente cliente;
+public class InvoiceDto {
+    private Customer customer;
 }

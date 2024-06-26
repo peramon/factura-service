@@ -1,4 +1,4 @@
-package com.alquimiasoft.serviciofactura.exception;
+package com.alquimiasoft.invoiceservice.exception;
 
 public class ResourceNotFoundException extends RuntimeException{
 

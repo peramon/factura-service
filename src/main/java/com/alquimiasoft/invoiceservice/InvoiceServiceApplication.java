@@ -1,4 +1,4 @@
-package com.alquimiasoft.serviciofactura;
+package com.alquimiasoft.invoiceservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class ServicioFacturaApplication {
+public class InvoiceServiceApplication {
 
 	@GetMapping("/")
 	String home(){
@@ -15,7 +15,7 @@ public class ServicioFacturaApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(ServicioFacturaApplication.class, args);
+		SpringApplication.run(InvoiceServiceApplication.class, args);
 	}
 
 }

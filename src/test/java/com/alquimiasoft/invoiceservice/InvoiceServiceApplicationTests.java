@@ -1,10 +1,10 @@
-package com.alquimiasoft.serviciofactura;
+package com.alquimiasoft.invoiceservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServicioFacturaApplicationTests {
+class InvoiceServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

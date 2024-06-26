@@ -1,4 +1,4 @@
-package com.alquimiasoft.serviciofactura.dto;
+package com.alquimiasoft.invoiceservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public abstract class InfoDireccionDao {
-    private String nombre;
-    private String direccion;
+public abstract class InfoAddressDao {
+    private String name;
+    private String address;
 }
