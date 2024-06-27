@@ -20,9 +20,9 @@ public class Invoice {
     private String formattedDate;
 
     // Relations
-    /*@ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
-    private Customer customer;*/
+    private Customer customer;
 
     @PrePersist
     public void prePersist(){

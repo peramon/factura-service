@@ -37,8 +37,8 @@ public class Customer {
         invoices.add(invoice);
     }
 
-   /* public void removeInvoice(Invoice invoice){
+   public void removeInvoice(Invoice invoice){
         invoices.remove(invoice);
         invoice.setCustomer(null);
-    }*/
+    }
 }

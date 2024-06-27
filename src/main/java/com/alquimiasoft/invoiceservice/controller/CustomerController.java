@@ -104,18 +104,18 @@ public class CustomerController {
     }
 
     // Invoice add
-//    @PostMapping("{customerID}/invoices")
-//    public Invoice addInvoice(@PathVariable Integer customerID, @RequestBody Invoice invoice){
-//        Customer customer = customerService.searchCustomerById(customerID);
-//        customer.addInvoice(invoice);
-//        return invoiceService.save(invoice);
-//    }
-//
-//    @GetMapping("/{customerId}/invoices")
-//    public List<Invoice> getInvoices(@PathVariable Integer customerId) {
-//        Customer customer = customerService.searchCustomerById(customerId);
-//        return new ArrayList<>(customer.getInvoices());
-//    }
+    @PostMapping("{customerID}/invoices")
+    public Invoice addInvoice(@PathVariable Integer customerID, @RequestBody Invoice invoice){
+        Customer customer = customerService.searchCustomerById(customerID);
+        customer.addInvoice(invoice);
+        return invoiceService.save(invoice);
+    }
+
+    @GetMapping("/{customerId}/invoices")
+    public List<Invoice> getInvoices(@PathVariable Integer customerId) {
+        Customer customer = customerService.searchCustomerById(customerId);
+        return new ArrayList<>(customer.getInvoices());
+    }
 }
 
 
